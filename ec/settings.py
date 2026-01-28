@@ -117,12 +117,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-
 STATIC_URL = '/static/'
-STATICFILES_DIR = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Render yahan se files uthayega
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 3. WhiteNoise compression enable karein
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL ='/profile'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -137,6 +139,7 @@ EMAIL_HOST_PASSWORD = 'wyerrxbkorexsked'
 
 RAZOR_KEY_ID = "rzp_test_qzsErE0IBRIJG8"
 RAZOR_KEY_SECRET = "n16wn6yLzy6kWegRBwJTs0So"
+
 
 
 
