@@ -76,5 +76,7 @@ path('verify_payment/', views.verify_payment, name='verify_payment'),
 ]
 
 # Static and media file configuration (for development only)
-if settings.DEBUG:
+if settings.DEBUG or True: # Render par True ki tarah treat karein agar images chahiye
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
