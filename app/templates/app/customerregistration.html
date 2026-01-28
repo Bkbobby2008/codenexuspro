@@ -1,0 +1,58 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Customer Registration{% endblock title %}
+<style>
+
+
+
+</style>
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row justify-content-center align-items-center g-4">
+        <!-- Image Section -->
+        <div class="col-12 col-md-5 text-center">
+            <img src="{% static 'app/images/banner/ww.jpg' %}" alt="Contact Us" class="img-fluid rounded shadow w-100">
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="col-12 col-md-6 col-lg-5">
+            <h3 class="text-center mb-4">Customer Registration</h3>
+            <hr>
+
+            <form action="" method="post" novalidate class="shadow p-4 bg-light rounded">
+                {% csrf_token %}
+                
+                {% for fm in form %}
+                    <div class="mb-3">
+                        {{ fm.label_tag }}
+                        {{ fm }}
+                        {% if fm.errors %}
+                            <div class="text-danger small">
+                                {{ fm.errors|striptags }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="text-center text-primary fw-bold mt-3">
+                    <small>Existing User? 
+                        <a href="{% url 'login' %}" class="text-danger">Login Now</a>
+                    </small>
+                </div>
+
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger my-3">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

@@ -1,0 +1,113 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Payment Successful{% endblock title %}
+
+{% block main-content %}
+<style>
+    /* Full Page with Extra Height */
+    body {
+        background: white;
+        height: 120vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Success Container */
+    .success-container {
+        text-align: center;
+        background: #fff;
+        margin: 20px auto;
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 800px; /* ✅ Width Extended */
+        width: 90%;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Checkmark Icon */
+    .check-icon {
+        font-size: 110px; /* ✅ Bigger Icon */
+        color: #28a745;
+        animation: popScale 0.6s ease-in-out;
+    }
+
+    /* Animations */
+    @keyframes popScale {
+        0% { transform: scale(0); opacity: 0; }
+        80% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Payment Info Box */
+    .payment-info {
+        text-align: left;
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 12px;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    /* Order Item List */
+    .order-item {
+        border-bottom: 1px solid #ddd;
+        padding: 12px 0;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #28a745;
+        border: none;
+        font-size: 20px;
+        padding: 12px 25px;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="success-container">
+    <!-- Animated Check Icon -->
+    <div class="check-icon">✅</div>
+    <h1 class="text-success mt-3">Payment Successful!</h1>
+    <p class="text-muted">Thank you, <strong>{{ user.username }}</strong>! Your order has been placed successfully.</p>
+
+    <!-- Order Summary -->
+    <div class="payment-info">
+        <h3 class="text-primary">🔹 Order Summary</h3>
+        <hr>
+        {% for item in cart_items %}
+        <div class="order-item">
+            <p><strong>🛒 {{ item.product.title }}</strong></p>
+            <p>Quantity: {{ item.quantity }} × ₹{{ item.product.discount_price }}</p>
+        </div>
+        {% endfor %}
+        <hr>
+        <p><strong>Subtotal:</strong> ₹{{ subtotal }}</p>
+        <p><strong>Delivery Charge:</strong> ₹{{ delivery_charge }}</p>
+        <h3><strong>Total Paid:</strong> <span style="color: #dc3545;">₹{{ totalamount }}</span></h3>
+    </div>
+
+    <!-- Payment Details -->
+    <div class="payment-info mt-3">
+        <h3 class="text-primary">💳 Payment Details</h3>
+        <p><strong>🆔 Payment ID:</strong> <span style="color: #28a745;">{{ payment_id }}</span></p>
+        <p><strong>📦 Order ID:</strong> <span style="color: #007bff;">{{ order_id }}</span></p>
+    </div>
+
+    <!-- Go to Homepage Button -->
+    <a href="{% url 'home' %}" class="btn btn-primary mt-4">🏡 Back to Homepage</a>
+</div>
+
+{% endblock main-content %}
