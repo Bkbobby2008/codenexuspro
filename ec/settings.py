@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-v+-+uw+stvc+cvf8=vu(u-&l%mrkdfwp@bw(4gt@5dm3m(quo3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['codenexuspro-1fbu.onrender.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = [
+    'codenexuspro-1fbu.onrender.com', 
+    'bobbythecoder.in', 
+    'www.bobbythecoder.in',
+    '127.0.0.1'
+    ]
 
 
 # Application definition
@@ -139,6 +144,7 @@ EMAIL_HOST_PASSWORD = 'wyerrxbkorexsked'
 
 RAZOR_KEY_ID = "rzp_test_qzsErE0IBRIJG8"
 RAZOR_KEY_SECRET = "n16wn6yLzy6kWegRBwJTs0So"
+
 
 
 
